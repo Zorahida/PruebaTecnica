@@ -1,26 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import Contact from './pages/Contact/Contact';
 import Home from './pages/Home/Home';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 import { FormattedMessage, IntlProvider } from 'react-intl';
-import Spanish from './lang/es.json';
-import English from './lang/en.json';
+import Spanish from './components/Languaje/es.json'
+import English from './components/Languaje/en.json';
 
+export const Context = React.createContext();
 
-function App(props) {
-    const locale = navigator.languaje;
+function App() {
 
-    let lang;
-    if (locale ==="en") {
-      lang = English;
-    } else if (locale === "es") {
-        lang = Spanish;
+    const local = navigator.language;
+
+var lang;
+if (local === "en") {
+  lang = English;
+  } else {
+    lang = Spanish;
+  }
+
+const Traduction = (props) => {
+  const [locale, setLocale] = useState(local);
+  const [messages, setMessages] = useState(lang);
+
+  const selectLanguage = (e) => {
+    const newLocale = e.target.value;
+    setLocale(newLocale);
+    if (newLocale === "en") {
+      setMessages(English);
+      } else {
+        setMessages(Spanish);
       }
+    }
   
-    return (
-      <IntlProvider locale={locale} messages={lang}>
+  return (
+    <Context.Provider value={{ locale, selectLanguage }}>
+      <IntlProvider messages={messages} locale={locale}>
+        {props.children}
+      </IntlProvider>
+    </Context.Provider>
+  );
+};
+  
+return (
+    <Traduction>
         <BrowserRouter>
           <>
             <NavBar />
@@ -33,33 +58,31 @@ function App(props) {
     
           <div className="App">
             <header className="App-header">
-              <p>
-                <FormattedMessage
-                  id="app.header"
-                  defaultMessage="Edit the files and save to reload"
-                  values={{
-                    fileName:"src/App.js",
-                    code: (word) => <strong>{word}</strong>
-                  }}
-                />
-              </p>
+        
+    <Context.Consumer>
+        {context => (
+        <button onClick={() => context.selectLanguage('es')}>Change the language</button>
+        )}
+    </Context.Consumer>
               <a
                 className="App-link"
-                href="https://reactjs.org"
+                href="http://localhost:3000"
                 target="_blank"
                 rel="noopener noreferrer"
-              >
-                <FormattedMessage id="app.content" defaultMessage="Learn React" />
-              </a>
+                >
+                <FormattedMessage
+                id="app.content"
+                 defaultMessage={"Current language: {locale}"}
+                 />
+                 </a>
               <FormattedMessage
                 id="app.channel.plug"
-                defaultMessage="Internationalization for Upgraders"
-              />
+                defaultMessage="English"/>
             </header>
           </div>
         </BrowserRouter>
-      </IntlProvider>
+      </Traduction>
     );
-  }
+}
   
   export default App;
