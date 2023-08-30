@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import Contact from './pages/Contact/Contact';
 import Home from './pages/Home/Home';
@@ -6,22 +6,21 @@ import ProductDetail from './pages/ProductDetail/ProductDetail';
 import { IntlProvider } from 'react-intl';
 import Spanish from "./components/Language/es.json";
 import English from "./components/Language/en.json"
+import { useState } from 'react';
 
 
 function App() {
 
 const local = navigator.language;
 const message = local === 'es' ? Spanish : English;
-
+const [mode, setMode] = useState(false);
 
   
-return (
+    return (
     <IntlProvider locale={local} messages={message}>
-        <BrowserRouter>
-          <>
-          <div className = {mode ? 'day' : 'night'}>
-            <mode.Provider value={mode}>
-            <NavBar />
+        <>
+            <div className={mode ? 'light' : 'dark'}>
+            <NavBar mode={mode} setMode={setMode} />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/product/:productId" element={<ProductDetail />} />
@@ -29,7 +28,6 @@ return (
             </Routes>
             </div>
           </>
-        </BrowserRouter>
       </IntlProvider>
     );
 }
