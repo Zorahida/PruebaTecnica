@@ -27,10 +27,12 @@ function NavBar  () {
 
     return(
         <nav>
-        <div className={mode ? "light" : "dark"}>
+        <div>
             <ul>
-                <li><Link to="/">{message.home}</Link></li>
-                <li><Link to="/Contact">{message.contact}</Link></li>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/Contact">Contact Us</Link></li>
+                <li><Link to="/LogIn">LogIn</Link></li>
+                <li><Link to="/Register">Register</Link></li>
             </ul>
 
             <button onClick={()=>setMode(!mode)}>{mode ? "dark" : "light"}</button>
