@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Spanish from "../Language/es.json";
 import English from "../Language/en.json";
 import "../../styles/DayMode.css"
+import DaymodeContext from "../DayNight/DayNight";
 
 
-
-function NavBar  ({ mode, setMode }) {
+function NavBar  () {
 
     
     const local = navigator.language;
@@ -23,6 +23,7 @@ function NavBar  ({ mode, setMode }) {
         }
     };
 
+    const { mode, setMode} = useContext(DaymodeContext);
 
     return(
         <nav>
