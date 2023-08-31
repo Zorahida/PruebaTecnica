@@ -1,0 +1,60 @@
+/* Login.scss */
+
+.Login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  
+      label {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+  
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+  
+      button[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+  
+        &:hover {
+          background-color: #0056b3;
+        }
+      }
+  
+      div {
+        font-size: 16px;
+        color: red;
+        margin-top: 10px;
+      }
+    }
+  
+    a {
+      margin-top: 10px;
+      font-size: 16px;
+    }
+  }
+  

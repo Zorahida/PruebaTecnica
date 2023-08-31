@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import "./Home.css"
 
 function Home() {
       const [items, setItem] = useState([]);
@@ -15,9 +15,9 @@ function Home() {
     
     
       return (
-        <div className="ProductList">
+        <div className="Product">
           <h1>Welcome to this fabulous shop!</h1>
-          <ul>  {items.map((product) => (
+          <ul className="productList">  {items.map((product) => (
           <li key={product.id}>
             <Link to={`/product/${product.id}`}>
             <div className="product-item">

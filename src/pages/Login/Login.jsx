@@ -32,9 +32,10 @@ const Login = ({ loginUser, logError }) => {
     <input 
     type="email" 
     name="email"  
-    placeholder="email"
+    placeholder="write your email"
     value={form.email}
-    pattern= "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i"
+    pattern= "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
+    onChange={(e) => setForm({ ...form, email: e.target.value })}
     required 
     />
     <label>Password</label>
@@ -43,15 +44,16 @@ const Login = ({ loginUser, logError }) => {
     name="password" 
     placeholder="write your password"
     value={form.password}
+    pattern= "^(?=.*[a-zA-Z])(?=.*[!@#$%^&*_=+-]).{8,}$"
+    onChange={(e) => setForm({ ...form, password: e.target.value })}
     required
-    pattern= "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$/})}"
-
     />
     <button type="submit">Log In</button>
     <div>
         {logError ? <p>{logError}</p> : null} 
     </div>
   </form>
+  <p>Or</p>
   <Link to="/register">Register</Link>
   </div>
   );

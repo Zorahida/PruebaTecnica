@@ -11,8 +11,10 @@ import DaymodeContext from "./components/DayNight/DayNight";
 import { RegisterForm } from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import { useLocation } from "react-router-dom";
+import AuthRoute from "./services/Auth";
+import Profile from "./pages/Profile/Profile";
 
-const userList = [
+export const userList = [
     {
     email: 'zorahida@gmail.com',
     password: 'Z123456d@'
@@ -31,23 +33,25 @@ function App() {
   const handleClick = () => {
     setMode(true);
   };
-  const [logError,setLogError] = useState();
+  const [logError,setLogError] = useState("");
 
   const location = useLocation();
 
   const loginUser = (form) =>{
-      const checkuser = userList.find(
+      const checkUser = userList.find(
     (user) => user.email === form.email && user.password === form.password
     );
-    if(checkuser) {
-        logError('');
+    if(checkUser) {
+        setLogError('');
     } else{
         setLogError('User or password incorrect, please, check it again')
     }
+  };
 
   return (
     <IntlProvider locale={local} messages={message}>
       <DaymodeContext.Provider value={{ mode, setMode }}>
+        <>
         <div className={mode ? "light" : "dark"}>
           <input type="button" onClick={handleClick} />
           <NavBar />
@@ -55,13 +59,15 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/product/:productId" element={<ProductDetail />} />
             <Route path="/Contact" element={<Contact />} />
-            <Route path="/LogIn" element={<Login loginUser={loginUser} location={location} />} />
+            <Route path="/LogIn" element={<Login loginUser={loginUser} location={location} logError={logError}/>} />
+            <Route path="/Profile" element= {<AuthRoute userList={userList} component={<Profile />} /> } />
             <Route path="/Register" element={<RegisterForm />} />
           </Routes>
         </div>
+        </>
       </DaymodeContext.Provider>
     </IntlProvider>
   );
-}}
+}
 
 export default App;

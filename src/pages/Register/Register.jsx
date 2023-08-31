@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
+import "./Register.css"
 
 export const RegisterForm = () => {
     const { register, handleSubmit } = useForm();
