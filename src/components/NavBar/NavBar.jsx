@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
 import DaymodeContext from "../DayNight/DayNight";
 import { userList } from "../../App";
@@ -10,9 +10,11 @@ import "./NavBar.css";
 
 function NavBar() {
 
-    const logout = () => {
+    const navigate = useNavigate();
+
+     const logout = () => {
         userList(null);
-        Navigate('/');
+        navigate('/login', {replace: true});
     }
 
     const local = navigator.language;
@@ -37,7 +39,9 @@ function NavBar() {
                 <ul className="navlist">
                     <li><Link to="/"><FormattedMessage id="navbar.home" defaultMessage="Home" /></Link></li>
                     <li><Link to="/Contact"><FormattedMessage id="navbar.contactUs" defaultMessage="Contact Us" /></Link></li>
-                    {userList ? <Link to="/" onClick={logout}><FormattedMessage id="navbar.logOut" defaultMessage="Log Out" /></Link> : <Link to="/login"><FormattedMessage id="navbar.logIn" defaultMessage="Log In" /></Link>}
+                    {userList ? (
+                    <Link to="/login" onClick={logout}><FormattedMessage id="navbar.logOut" defaultMessage="Log Out" /></Link>
+                    ) : (<Link to="/login"><FormattedMessage id="navbar.logIn" defaultMessage="Log In" /></Link>)}
                     <li><Link to="/Register"><FormattedMessage id="navbar.register" defaultMessage="Register" /></Link></li>
                     <li><Link to="/Profile"><FormattedMessage id="navbar.yourProfile" defaultMessage="Your Profile" /></Link></li>
                 </ul>
