@@ -1,38 +1,46 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./Home.css"
+import { FormattedMessage } from "react-intl";
+import "./Home.css";
 
 function Home() {
-      const [items, setItem] = useState([]);
-    
-      useEffect(() => {
-        fetch("https://fakestoreapi.com/products?limit=12")
-        .then((response) => response.json())
-        .then((data) => {
-            setItem(data);
-          });
-        }, []);
-    
-    
-      return (
-        <div className="Product">
-          <h1>Welcome to this fabulous shop!</h1>
-          <ul className="productList">  {items.map((product) => (
+  const [items, setItem] = useState([]);
+
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products?limit=12")
+      .then((response) => response.json())
+      .then((data) => {
+        setItem(data);
+      });
+  }, []);
+
+  return (
+    <div className="Product">
+      <h1>
+        <FormattedMessage id="home.welcome" defaultMessage="Welcome to this fabulous shop!" />
+      </h1>
+      <ul className="productList">
+        {items.map((product) => (
           <li key={product.id}>
             <Link to={`/product/${product.id}`}>
-            <div className="product-item">
-              <img src={product.image} alt={product.title} />
-              <div className="product-details">
-                <h2>{product.title}</h2>
-                <p>Price: ${product.price}</p>
-                <p>Category: {product.category}</p>
+              <div className="product-item">
+                <img src={product.image} alt={product.title} />
+                <div className="product-details">
+                  <h2>{product.title}</h2>
+                  <p>
+                    <FormattedMessage id="home.price" defaultMessage="Price: $" /> {product.price}
+                  </p>
+                  <p>
+                    <FormattedMessage id="home.category" defaultMessage="Category: " /> {product.category}
+                  </p>
+                </div>
               </div>
-            </div>
             </Link>
           </li>
-        ))}</ul>
-        </div>
-      );
+        ))}
+      </ul>
+    </div>
+  );
 }
 
-    export default Home
+export default Home;

@@ -2,11 +2,12 @@ import { Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import Contact from "./pages/Contact/Contact";
 import Home from "./pages/Home/Home";
+import { Context } from "react-intl/src/components/injectIntl";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
-import { IntlProvider } from "react-intl";
+import { FormattedMessage } from "react-intl";
 import Spanish from "./components/Language/es.json";
 import English from "./components/Language/en.json";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import DaymodeContext from "./components/DayNight/DayNight";
 import { RegisterForm } from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
@@ -26,9 +27,10 @@ export const userList = [
   ]
 
 
-function App() {
-  const local = navigator.language;
-  const message = local === "es" ? Spanish : English;
+function App(props) {
+  const context = useContext(Context);
+  const locale = navigator.language;
+  const message = locale === "es" ? Spanish : English;
   const [mode, setMode] = useState(true);
   const handleClick = () => {
     setMode(true);
@@ -46,15 +48,21 @@ function App() {
     } else{
         setLogError('User or password incorrect, please, check it again')
     }
+
   };
 
   return (
-    <IntlProvider locale={local} messages={message}>
       <DaymodeContext.Provider value={{ mode, setMode }}>
         <>
         <div className={mode ? "light" : "dark"}>
           <input type="button" onClick={handleClick} />
           <NavBar />
+          <select value={context.locale} onChange={context.selectLanguage}>
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+          </select>
+          <FormattedMessage id={locale}
+          ></FormattedMessage>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/product/:productId" element={<ProductDetail />} />
@@ -66,7 +74,8 @@ function App() {
         </div>
         </>
       </DaymodeContext.Provider>
-    </IntlProvider>
+  
+
   );
 }
 

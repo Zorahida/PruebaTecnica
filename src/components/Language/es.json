@@ -1,7 +1,17 @@
-{
-    "contact.title": "Contacta con nosotros",
-    "contact.nameLabel": "Nombre",
-    "contact.commentLabel": "Déjanos tu comentario",
-    "languageButton": "Spanish"
-  
-}
+    {
+        "contact.title": "Contáctenos",
+        "contact.nameLabel": "Nombre",
+        "contact.commentLabel": "Deja tu comentario aquí",
+        "nav.home": "Inicio",
+        "nav.contact": "Contáctenos",
+        "nav.login": "Iniciar sesión",
+        "nav.logout": "Cerrar sesión",
+        "nav.register": "Registrarse",
+        "nav.profile": "Tu perfil",
+        "home.welcome": "¡Bienvenido a esta fabulosa tienda!",
+        "home.loading": "Cargando...",
+        "profile.welcome": "Bienvenido a tu perfil"
+      }
+      
+
+      

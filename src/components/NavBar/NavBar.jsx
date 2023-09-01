@@ -1,20 +1,25 @@
-import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, Navigate } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
+import DaymodeContext from "../DayNight/DayNight";
+import { userList } from "../../App";
 import Spanish from "../Language/es.json";
 import English from "../Language/en.json";
-import "../../styles/DayMode.css"
-import DaymodeContext from "../DayNight/DayNight";
-import "./NavBar.css"
-import { userList } from "../../App";
+import "../../styles/DayMode.css";
+import "./NavBar.css";
 
-function NavBar  () {
+function NavBar() {
 
-    
+    const logout = () => {
+        userList(null);
+        Navigate('/');
+    }
+
     const local = navigator.language;
     const language = local === "en" ? English : Spanish;
-    
+
     const [message, setMessage] = useState(language);
-    
+
     const selectLanguage = (e) => {
         const newLocale = e.target.value;
         if (newLocale === "en") {
@@ -24,30 +29,24 @@ function NavBar  () {
         }
     };
 
-    const { mode, setMode} = useContext(DaymodeContext);
+    const { mode, setMode } = useContext(DaymodeContext);
 
-    return(
+    return (
         <nav>
-        <div className="nav">
-            <ul className="navlist">
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/Contact">Contact Us</Link></li>
-                {userList ? (
-                <li><Link to="/LogOut">LogOut</Link></li>
-                 ) : (
-                <li><Link to="/LogIn">LogIn</Link></li>
-                 )}
-                <li><Link to="/Register">Register</Link></li>
-                <li><Link to="/Profile">Your Profile</Link></li>
-            </ul>
+            <div className="nav">
+                <ul className="navlist">
+                    <li><Link to="/"><FormattedMessage id="navbar.home" defaultMessage="Home" /></Link></li>
+                    <li><Link to="/Contact"><FormattedMessage id="navbar.contactUs" defaultMessage="Contact Us" /></Link></li>
+                    {userList ? <Link to="/" onClick={logout}><FormattedMessage id="navbar.logOut" defaultMessage="Log Out" /></Link> : <Link to="/login"><FormattedMessage id="navbar.logIn" defaultMessage="Log In" /></Link>}
+                    <li><Link to="/Register"><FormattedMessage id="navbar.register" defaultMessage="Register" /></Link></li>
+                    <li><Link to="/Profile"><FormattedMessage id="navbar.yourProfile" defaultMessage="Your Profile" /></Link></li>
+                </ul>
 
-            <button onClick={()=>setMode(!mode)}>{mode ? "dark" : "light"}</button>
-            <button onClick={selectLanguage}>Change to:{message.ButtonLanguage}</button>
-        </div>
+                <button onClick={() => setMode(!mode)}>{mode ? "dark" : "light"}</button>
+                <button onClick={selectLanguage}><FormattedMessage id="navbar.changeLanguage" defaultMessage={`Change to: ${message.ButtonLanguage}`} /></button>
+            </div>
         </nav>
-        
     )
-    }
+}
 
-
-export default NavBar
+export default NavBar;
