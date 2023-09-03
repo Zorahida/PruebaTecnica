@@ -10,12 +10,15 @@ const userInitialState = {
 const Login = ({ loginUser, logError }) => {
   const [form, setForm] = useState(userInitialState);
 
+
   const submitForm = (ev) => {
     ev.preventDefault();
     console.log("Se han enviado los datos del cliente");
 
-    loginUser(form);
     setForm(userInitialState);
+
+
+
   };
 
   return (
@@ -30,7 +33,6 @@ const Login = ({ loginUser, logError }) => {
         <input
           type="email"
           name="email"
-          placeholder={<FormattedMessage id="login.emailPlaceholder" defaultMessage="write your email" />}
           value={form.email}
           pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
           onChange={(e) => setForm({ ...form, email: e.target.value })}
@@ -42,7 +44,6 @@ const Login = ({ loginUser, logError }) => {
         <input
           type="password"
           name="password"
-          placeholder={<FormattedMessage id="login.passwordPlaceholder" defaultMessage="write your password" />}
           value={form.password}
           pattern="^(?=.*[a-zA-Z])(?=.*[!@#$%^&*_=+-]).{8,}$"
           onChange={(e) => setForm({ ...form, password: e.target.value })}

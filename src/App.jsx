@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import Contact from "./pages/Contact/Contact";
 import Home from "./pages/Home/Home";
@@ -38,6 +38,8 @@ function App(props) {
   };
   const [logError,setLogError] = useState("");
 
+  const [isLogged, setIsLogged] = useState(false);
+
   const location = useLocation();
 
   const loginUser = (form) =>{
@@ -45,11 +47,18 @@ function App(props) {
     (user) => user.email === form.email && user.password === form.password
     );
     if(checkUser) {
+        setIsLogged(true);
         setLogError('');
     } else{
         setLogError('User or password incorrect, please, check it again')
     }
-
+    const logout = () => {
+      userList(null);
+      Navigate('/login', {replace: false});
+  }
+  };
+   const handleLogout = () => {
+    setIsLogged(false);
   };
 
   return (
@@ -60,7 +69,7 @@ function App(props) {
           <NavBar />
           <select value={context.locale} onChange={context.selectLanguage}>
             <option value="en">English</option>
-            <option value="es">Spanish</option>
+            <option value="es">Español</option>
           </select>
           <FormattedMessage id={locale}
           ></FormattedMessage>
