@@ -1,70 +1,25 @@
-# Getting Started with Create React App
+Proyecto de Aplicación React
+En este proyecto de aplicación web desarrollado en React, tiene como objetivo brindar a los usuarios una experiencia intuitiva para la compra de artículos visualizados desde una API. La aplicación incorpora diversas características, como registro de usuarios, inicio de sesión, vista detallada de productos, internacionalización y un modo día/noche para mejorar la comodidad visual del usuario.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Tecnologías Utilizadas
+React: Una biblioteca JavaScript de código abierto para construir interfaces de usuario interactivas y dinámicas.
+React Router: Una librería que facilita el enrutamiento y la navegación en la aplicación, permitiendo una transición suave entre diferentes vistas.
+React Hook Form: Una librería que simplifica la gestión de formularios en React, haciendo que la validación y el manejo de datos sean más eficientes.
+React Intl: Una librería para la internacionalización y localización de la aplicación, lo que permite mostrar contenido en diferentes idiomas.
+useState y useEffect: Hooks de React utilizados para gestionar el estado, nos va a permitir acceder a los valores del state, definirlo por defecto y también modificarlo, así como 
+useState y useEffect: Hooks de React utilizados para gestionar el estado, nos va a permitir acceder a los valores del state, definirlo por defecto y también modificarlo, así como ejecutar side effects.
+useContext: Un hook que facilita el acceso y la gestión del contexto en toda la aplicación sin tener que pasar por props uno a uno.
+useParams: Un hook para obtener parámetros de la URL, lo que resulta útil para mostrar detalles específicos de un producto.
+react-intl: Utilizado junto con FormattedMessage, esta librería permite la internacionalización(traducción) de mensajes y etiquetas dentro de la aplicación.
+react-hook-form: Una herramienta que hace que la creación y validación de formularios en React sean más sencillas y efectivas.
 
-## Available Scripts
+Estructura del Proyecto
+La estructura del proyecto está organizada de manera intuitiva para facilitar el desarrollo y el mantenimiento de modo que pueda seguir creciciendo y su funcionalidad mejore con el tiempo y uso.
 
-In the project directory, you can run:
+El objetivo de este proyecto es proporcionar a los usuarios una plataforma intuitiva y amigable para la compra y venta de artículos. Se ha priorizado la facilidad de uso y la comodidad del usuario, implementando funciones como el registro de usuarios, la visualización de detalles de productos y en cualquier dispositivo, ya se móvil, tablet o pc. Además, se ha integrado la internacionalización para permitir que los usuarios accedan a la aplicación en su idioma preferido.
 
-### `npm start`
+En resumen, este proyecto busca brindar una experiencia en línea agradable y eficiente para los usuarios interesados en explorar y adquirir productos de manera sencilla y cómoda.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
