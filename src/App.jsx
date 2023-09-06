@@ -1,31 +1,28 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import Contact from "./pages/Contact/Contact";
 import Home from "./pages/Home/Home";
 import { Context } from "react-intl/src/components/injectIntl";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import Spanish from "./components/Language/es.json";
 import English from "./components/Language/en.json";
 import { useContext, useState } from "react";
 import DaymodeContext from "./components/DayNight/DayNight";
-import { RegisterForm } from "./pages/Register/Register";
+import RegisterForm from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import { useLocation } from "react-router-dom";
 import AuthRoute from "./services/Auth";
 import Profile from "./pages/Profile/Profile";
 
 
-export const userList = [
-    {
-    email: 'zorahida@gmail.com',
-    password: 'Z123456d@'
-    },
-    {
-    email: 'pepe@gmail.com',
-    password: '123456P@'
-    }
-  ]
+export const user = [
+  {  
+    "email": 'pepe@gmail.com',
+    "password": '123456P@',
+}
+]
 
 
 function App(props) {
@@ -43,7 +40,7 @@ function App(props) {
   const location = useLocation();
 
   const loginUser = (form) =>{
-      const checkUser = userList.find(
+      const checkUser = user.find(
     (user) => user.email === form.email && user.password === form.password
     );
     if(checkUser) {
@@ -53,7 +50,7 @@ function App(props) {
         setLogError('User or password incorrect, please, check it again')
     }
     const logout = () => {
-      userList(null);
+      user(null);
       Navigate('/login', {replace: false});
   }
   };
@@ -77,9 +74,9 @@ function App(props) {
             <Route path="/" element={<Home />} />
             <Route path="/product/:productId" element={<ProductDetail />} />
             <Route path="/Contact" element={<Contact />} />
-            <Route path="/LogIn" element={<Login loginUser={loginUser} location={location} logError={logError}/>} />
-            <Route path="/Profile" element= {<AuthRoute userList={userList} component={<Profile />} /> } />
             <Route path="/Register" element={<RegisterForm />} />
+            <Route path="/LogIn" element={<Login loginUser={loginUser} location={location} logError={logError}/>} />
+            <Route path="/Profile" element= {<AuthRoute userList={user} component={<Profile />} /> } />
           </Routes>
         </div>
         </>

@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
 import DaymodeContext from "../DayNight/DayNight";
-import { userList } from "../../App";
+import { user } from "../../App";
 import Spanish from "../Language/es.json";
 import English from "../Language/en.json";
 import "../../styles/DayMode.css";
@@ -34,7 +34,7 @@ function NavBar({isLogged, logout}) {
                 <ul className="navlist">
                     <li><Link to="/"><FormattedMessage id="navbar.home" defaultMessage="Home" /></Link></li>
                     <li><Link to="/Contact"><FormattedMessage id="navbar.contactUs" defaultMessage="Contact Us" /></Link></li>
-                    {userList ? (
+                    {user ? (
                     <Link to="/login" onClick={logout}><FormattedMessage id="navbar.logIn" defaultMessage="Log In" /></Link>
                     ) : (<Link to="/login"><FormattedMessage id="navbar.logOut" defaultMessage="Log Out" /></Link>)}
                     <li><Link to="/Register"><FormattedMessage id="navbar.register" defaultMessage="Register" /></Link></li>
